@@ -628,7 +628,7 @@ def main():
     # About the App Section
     with st.expander("ℹ️ About the App"):
         st.markdown("""
-        **Neon Unit Converter** is a sleek and modern tool for converting between various units. 
+        **Quantum Unit Converter** is a sleek and modern tool for converting between various units. 
         - Built with **Python** and **Streamlit**.
         - Features a **dark theme** with neon accents.
         - Includes **real-time history**, **feedback submission**, and **fun facts**.
