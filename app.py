@@ -52,21 +52,70 @@ def inject_custom_css():
             --dark-bg: #0a0a0a;
         }
         
+        /* Base dark theme */
         .stApp {
             background-color: var(--dark-bg);
             color: white;
+        }
+        
+        /* Input field styling with increased specificity */
+        div[data-baseweb="select"] > div,
+        div[data-baseweb="input"] input,
+        div[data-baseweb="number-input"] input,
+        div[data-baseweb="textarea"] textarea {
+            background-color: #1a1a1a !important;
+            color: white !important;
+            border: 1px solid var(--neon-cyan) !important;
+            border-radius: 4px !important;
+        }
+
+        /* Hover states */
+        div[data-baseweb="select"]:hover > div,
+        div[data-baseweb="input"]:hover input,
+        div[data-baseweb="number-input"]:hover input,
+        div[data-baseweb="textarea"]:hover textarea {
+            background-color: #222222 !important;
+            border-color: var(--neon-pink) !important;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.2) !important;
+        }
+
+        /* Focus states */
+        div[data-baseweb="select"]:focus-within > div,
+        div[data-baseweb="input"]:focus-within input,
+        div[data-baseweb="number-input"]:focus-within input,
+        div[data-baseweb="textarea"]:focus-within textarea {
+            background-color: #2a2a2a !important;
+            border-color: var(--neon-cyan) !important;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2) !important;
+        }
+
+        /* Dropdown menu styling */
+        div[role="listbox"] {
+            background-color: #1a1a1a !important;
+            border: 1px solid var(--neon-cyan) !important;
+        }
+
+        div[role="option"] {
+            background-color: #1a1a1a !important;
+            color: white !important;
+        }
+
+        div[role="option"]:hover {
+            background-color: #2a2a2a !important;
+        }
+
+        /* Label styling */
+        .stSelectbox label,
+        .stTextInput label,
+        .stNumberInput label,
+        .stTextArea label {
+            color: var(--neon-cyan) !important;
         }
         
         /* Sidebar styling */
         [data-testid="stSidebar"] {
             background-color: #000000 !important; /* Black background */
             border-right: 2px solid var(--neon-cyan) !important; /* Neon cyan border */
-        }
-        
-        .stTextInput input, .stNumberInput input, .stSelectbox select {
-            background-color: #1a1a1a !important;
-            color: white !important;
-            border: 1px solid var(--neon-cyan) !important;
         }
         
         /* Button styling for Clear History and Submit Feedback */
@@ -117,10 +166,6 @@ def inject_custom_css():
             margin: 15px 0;
             background-color: #1a1a1a;
             animation: fadeIn 1s ease-in-out;
-        }
-        
-        label {
-            color: var(--neon-cyan) !important;
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -184,12 +229,6 @@ def inject_custom_css():
             font-size: 0.9em;
         }
 
-        /* Input field hover effects */
-        .stTextInput input:hover, .stNumberInput input:hover, .stSelectbox select:hover {
-            border-color: var(--neon-pink) !important;
-            box-shadow: 0 0 10px rgba(255, 105, 180, 0.2) !important;
-        }
-
         /* Conversion box hover effect */
         .conversion-box:hover {
             border-color: var(--neon-pink) !important;
@@ -221,6 +260,149 @@ def inject_custom_css():
         /* Ensure smooth transitions */
         * {
             transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Number input styling */
+        [data-testid="stNumberInput"] {
+            background-color: transparent !important;
+        }
+
+        [data-testid="stNumberInput"] input {
+            background-color: #1a1a1a !important;
+            color: white !important;
+            border: 1px solid var(--neon-cyan) !important;
+            border-radius: 4px !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Remove any additional borders from the container */
+        [data-testid="stNumberInput"] > div {
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        [data-testid="stNumberInput"] > div > div {
+            border: none !important;
+            outline: none !important;
+        }
+
+        /* Targeting the specific button elements with neon cyan */
+        [data-testid="stNumberInput"] button[aria-label="Decrease number input"],
+        [data-testid="stNumberInput"] button[aria-label="Increase number input"] {
+            background-color: transparent !important;
+            border: 1px solid var(--neon-cyan) !important;
+            border-radius: 4px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        [data-testid="stNumberInput"] button[aria-label="Decrease number input"] svg,
+        [data-testid="stNumberInput"] button[aria-label="Increase number input"] svg {
+            fill: var(--neon-cyan) !important;
+            transition: fill 0.3s ease !important;
+        }
+
+        /* Only hover color effect for +/- buttons */
+         /* Enhanced hover effects for +/- buttons */
+        [data-testid="stNumberInput"] button[aria-label="Decrease number input"]:hover,
+        [data-testid="stNumberInput"] button[aria-label="Increase number input"]:hover {
+            background-color: rgba(255, 105, 180, 0.2)!important;
+            
+        }
+            [data-testid="stNumberInput"] button[aria-label="Decrease number input"]:hover svg,
+        [data-testid="stNumberInput"] button[aria-label="Increase number input"]:hover svg {
+            fill: var(--neon-pink) !important;
+        }
+
+        /* Additional specific targeting for number input buttons */
+        [data-testid="stNumberInput"] div[data-baseweb="input"] div[role="spinbutton"] + div button {
+            background-color: transparent !important;
+            border: 1px solid var(--neon-cyan) !important;
+        }
+                 /* Additional specific targeting for hover effects */
+        .stNumberInput button:hover {
+            background-color: rgba(255, 105, 180, 0.2)!important;
+           
+        }
+
+        [data-testid="stNumberInput"] div[data-baseweb="input"] div[role="spinbutton"] + div button svg {
+            fill: var(--neon-cyan) !important;
+        }
+        [data-testid="stNumberInput"] button[aria-label="Decrease number input"]:hover svg,
+        [data-testid="stNumberInput"] button[aria-label="Increase number input"]:hover svg {
+            fill: var(--neon-pink) !important;
+        }
+
+        /* Remove any additional borders from the buttons */
+        [data-testid="stNumberInput"] button {
+            outline: none !important;
+        }
+
+        /* Override any default Streamlit styles */
+        .stNumberInput button {
+            background-color: transparent !important;
+            border: 1px solid var(--neon-cyan) !important;
+        }
+
+        .stNumberInput button svg {
+            fill: var(--neon-cyan) !important;
+        }
+        .stNumberInput button:hover svg {
+            fill: var(--neon-pink) !important;
+        }
+
+                
+
+        /* Textarea styling for feedback */
+        .stTextArea textarea {
+            background-color: #1a1a1a !important;
+            color: white !important;
+            border: 1px solid var(--neon-cyan) !important;
+            border-radius: 4px !important;
+        }
+
+        .stTextArea textarea:hover {
+            background-color: #222222 !important;
+            border-color: var(--neon-pink) !important;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.2) !important;
+        }
+                
+
+        .stTextArea textarea:focus {
+            background-color: #2a2a2a !important;
+            border-color: var(--neon-cyan) !important;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2) !important;
+        }
+
+        /* Enhanced main heading with neon effect */
+        h1:first-of-type {
+            color: white !important;
+            text-shadow: 
+                0 0 5px var(--neon-cyan),
+                0 0 15px var(--neon-cyan),
+                0 0 25px var(--neon-cyan),
+                0 0 40px var(--neon-pink) !important;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        /* Glow animation for the heading */
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 5px var(--neon-cyan),
+                    0 0 15px var(--neon-cyan),
+                    0 0 25px var(--neon-cyan),
+                    0 0 40px var(--neon-pink);
+            }
+            to {
+                text-shadow: 
+                    0 0 10px var(--neon-cyan),
+                    0 0 20px var(--neon-cyan),
+                    0 0 30px var(--neon-cyan),
+                    0 0 50px var(--neon-pink),
+                    0 0 70px var(--neon-pink);
+            }
         }
     </style>
     """, unsafe_allow_html=True)
@@ -263,12 +445,37 @@ def update_conversion_stats(conversion_type):
         st.session_state.most_used_conversion = {'type': conversion_type, 'count': current_count}
 
 def main():
+
+     # Add page configuration with metadata
+    st.set_page_config(
+        page_title="Quantum Unit Converter",
+        page_icon="⇄",
+       
+        initial_sidebar_state="expanded",
+        menu_items={
+            'Get Help': 'https://github.com/YusraSaleem',
+            'Report a bug': "https://github.com/YusraSaleem/quantum-converter/issues",
+            'About': """
+                # ⇄ Quantum Unit Converter
+                A sleek, modern unit converter with neon aesthetics.
+                
+                ## Features
+                - Multiple unit conversions
+                - Real-time history tracking
+                - Interactive neon interface
+                - Mobile responsive design
+                
+                Created by Yusra Saleem
+                """
+        }
+    )
+
     inject_custom_css()
     
-    st.title("🚀 Neon Unit Converter")
+    st.title("⇄ Quantum Unit Converter")
     st.markdown("---")
     
-    # Sidebar for history, feedback, and additional sections
+    # Sidebar with feedback at the bottom
     with st.sidebar:
         st.header("📜 Conversion History")
         
@@ -276,14 +483,13 @@ def main():
         if st.button("Clear All History"):
             st.session_state.history = []
             st.session_state.total_conversions = 0
-            # Reset conversion type counts
             for conv_type in CONVERSIONS.keys():
                 setattr(st.session_state, f'{conv_type}_count', 0)
             st.session_state.most_used_conversion = {'type': 'length', 'count': 0}
             st.rerun()
         
         # Display and manage history entries
-        for i, entry in enumerate(reversed(st.session_state.history)):  # Show newest first
+        for i, entry in enumerate(reversed(st.session_state.history)):
             with st.container():
                 st.markdown(f"""
                 <div class="history-entry">
@@ -297,22 +503,8 @@ def main():
                     st.session_state.history.pop(-(i+1))
                     st.session_state.total_conversions -= 1
                     st.rerun()
-        
-        st.markdown("---")
-        st.header("💬 Feedback")
-        
-        # Feedback form with consistent button styling
-        with st.form("feedback_form", clear_on_submit=True):
-            feedback = st.text_area("Share your feedback or suggestions:")
-            submitted = st.form_submit_button("Submit Feedback")
-            if submitted and feedback.strip():
-                st.session_state.feedback.append({
-                    'time': time.strftime("%H:%M:%S"),
-                    'feedback': feedback
-                })
-                st.success("Thank you for your feedback!")
 
-        # Today's Unit Facts - Dynamic based on usage
+        # Today's Unit Facts
         st.markdown("---")
         st.header("🎯 Today's Unit Facts")
         most_used = st.session_state.most_used_conversion
@@ -323,17 +515,20 @@ def main():
         </div>
         """, unsafe_allow_html=True)
 
+        # Updated Pro Tips Section
         st.markdown("---")
         st.header("🌟 Pro Tips")
         st.markdown("""
         <div class="sidebar-tip">
-            <p>💡 Double-click input to clear</p>
-            <p>⌨️ Use arrow keys to adjust values</p>
-            <p>📋 Click result to copy</p>
+            <p>💡 Check history for recent conversions</p>
+            <p>⚡ Use Clear History to reset all stats</p>
+            <p>📊 Track your most used conversions</p>
+            <p>💭 Share feedback to improve the app</p>
+            <p>🎯 View stats to monitor usage</p>
         </div>
         """, unsafe_allow_html=True)
 
-        # Enhanced App Statistics Section
+        # Live Stats Section
         st.markdown("---")
         st.header("📊 Live Stats")
         session_duration = time.time() - st.session_state.start_time
@@ -349,7 +544,20 @@ def main():
             <p>📈 Most Active Category: {most_used['type'].title()}</p>
         </div>
         """, unsafe_allow_html=True)
-    
+
+        # Feedback Section - Moved to the bottom
+        st.markdown("---")
+        st.header("💬 Feedback")
+        with st.form("feedback_form", clear_on_submit=True):
+            feedback = st.text_area("Share your thoughts or suggestions:")
+            submitted = st.form_submit_button("Submit Feedback")
+            if submitted and feedback.strip():
+                st.session_state.feedback.append({
+                    'time': time.strftime("%H:%M:%S"),
+                    'feedback': feedback
+                })
+                st.success("Thank you for your feedback!")
+
     # Main conversion interface
     conversion_type = st.selectbox(
         "🔧 Select Conversion Type",
@@ -445,6 +653,35 @@ def main():
             <p>The kilogram is the only SI base unit still defined by a physical artifact!</p>
         </div>
         """, unsafe_allow_html=True)
+
+          # Add footer at the bottom
+    st.markdown("---")
+    st.markdown("""
+        <div style="
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #0a0a0a;
+            padding: 10px;
+            text-align: center;
+            border-top: 1px solid var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+            z-index: 1000;
+        ">
+            <p style="
+                color: white;
+                margin: 0;
+                font-size: 0.9em;
+            ">
+                Designed & Developed by 
+                <span style="
+                    color: var(--neon-cyan);
+                    text-shadow: 0 0 5px var(--neon-cyan);
+                ">Yusra Saleem</span>
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
